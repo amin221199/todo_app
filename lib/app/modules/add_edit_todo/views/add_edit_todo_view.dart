@@ -30,10 +30,14 @@ class AddEditTodoView extends GetView<AddEditTodoController> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                if (controller.todo != null) {
-                  controller.updateTodoTitle();
-                } else {
-                  controller.addTodo();
+                if(controller.titleController.text.trim().isNotEmpty) {
+                  if (controller.todo != null) {
+                    controller.updateTodoTitle();
+                  } else {
+                    controller.addTodo();
+                  }
+                }else{
+                  Get.snackbar("Validation", "Please Enter valid title");
                 }
               },
               child: Text(

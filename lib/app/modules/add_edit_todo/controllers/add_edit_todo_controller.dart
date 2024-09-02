@@ -22,7 +22,7 @@ class AddEditTodoController extends GetxController {
   void addTodo() async {
     try {
       final todo = Todo(
-        title: titleController.text,
+        title: titleController.text.trim(),
       );
       await DatabaseService().insertTodo(todo);
       await todoController.loadTodos();
@@ -35,7 +35,7 @@ class AddEditTodoController extends GetxController {
   void updateTodoTitle() async {
     try {
       final updatedTodo = Todo(
-          title: titleController.text,
+          title: titleController.text.trim(),
           id: todo?.id,
           status: todo?.status ?? TodoStatus.todo);
       await DatabaseService().updateTodo(updatedTodo);
